@@ -1,0 +1,40 @@
+mysql> use suresh;
+Database changed
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suresh     | 98781 |
+|  2367 | rakesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | cse  | suresh     |  9834 |
+|  2389 | raghu  | cse  | suresg     | 98485 |
++-------+--------+------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update mentees set dept="aids"where name="raghu";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suresh     | 98781 |
+|  2367 | rakesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | cse  | suresh     |  9834 |
+|  2389 | raghu  | aids | suresg     | 98485 |
++-------+--------+------+------------+-------+
+4 rows in set (0.01 sec)
+
+mysql> delete from mentees where dept="aids";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suresh     | 98781 |
+|  2367 | rakesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | cse  | suresh     |  9834 |
++-------+--------+------+------------+-------+
+3 rows in set (0.00 sec)
