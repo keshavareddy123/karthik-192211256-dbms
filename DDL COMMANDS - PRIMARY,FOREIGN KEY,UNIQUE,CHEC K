@@ -1,0 +1,97 @@
+mysql> use suresh;
+Database changed
+mysql> create table student(stid int(3),stname varchar(10),stage int(3));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| stid   | int(3)      | YES  |     | NULL    |       |
+| stname | varchar(10) | YES  |     | NULL    |       |
+| stage  | int(3)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table student add primary key(stid);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| stid   | int(3)      | NO   | PRI | 0       |       |
+| stname | varchar(10) | YES  |     | NULL    |       |
+| stage  | int(3)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create table course(courseno int(3),coursename varchar(5),coursefee int(5));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc course;
++------------+------------+------+-----+---------+-------+
+| Field      | Type       | Null | Key | Default | Extra |
++------------+------------+------+-----+---------+-------+
+| courseno   | int(3)     | YES  |     | NULL    |       |
+| coursename | varchar(5) | YES  |     | NULL    |       |
+| coursefee  | int(5)     | YES  |     | NULL    |       |
++------------+------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table course add foreign key(courseno) refrernces student(stid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'refrernces student(stid)' at line 1
+mysql> alter table course add foreign key(courseno) references student(stid)
+    -> alter table course add foreign key(courseno) references student(stid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter table course add foreign key(courseno) references student(stid)' at line 2
+mysql> alter table course add foreign key(courseno) references student(stid);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc course;
++------------+------------+------+-----+---------+-------+
+| Field      | Type       | Null | Key | Default | Extra |
++------------+------------+------+-----+---------+-------+
+| courseno   | int(3)     | YES  | MUL | NULL    |       |
+| coursename | varchar(5) | YES  |     | NULL    |       |
+| coursefee  | int(5)     | YES  |     | NULL    |       |
++------------+------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table student add unique(stid);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| stid   | int(3)      | NO   | PRI | 0       |       |
+| stname | varchar(10) | YES  |     | NULL    |       |
+| stage  | int(3)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into student  values(101,"kiran",19);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(111,"rakesh",20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(110,"kesav",199);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from student;
++------+--------+-------+
+| stid | stname | stage |
++------+--------+-------+
+|  101 | kiran  |    19 |
+|  110 | kesav  |   199 |
+|  111 | rakesh |    20 |
++------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student add check(age>=18);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
