@@ -1,0 +1,88 @@
+mysql> use suresh;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_suresh |
++------------------+
+| course           |
+| mentees          |
+| student          |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+
+| regno | name   | dept    | fathername | phno  | marks |
++-------+--------+---------+------------+-------+-------+
+|  2346 | kumar  | cse     | suresh     | 98781 |    98 |
+|  2367 | rakesh | cse     | suresh     | 98791 |  NULL |
+|  2345 | ramesh | cse     | suresh     |  9834 |    92 |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 |
++-------+--------+---------+------------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table mentees add subject varchar(10);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set subject="dbms" where name="kumar";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> updat mentees set subject="foc" where name="rajesh";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'updat mentees set subject="foc" where name="rajesh"' at line 1
+mysql> update mentees set subject="FOC" where name="rakesh";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="python" where name="ramesh";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="pdsd" where name="rajiv";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2346 | kumar  | cse     | suresh     | 98781 |    98 | dbms    |
+|  2367 | rakesh | cse     | suresh     | 98791 |  NULL | FOC     |
+|  2345 | ramesh | cse     | suresh     |  9834 |    92 | python  |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | pdsd    |
++-------+--------+---------+------------+-------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where marks not between 99 and 100;
++-------+--------+------+------------+-------+-------+---------+
+| regno | name   | dept | fathername | phno  | marks | subject |
++-------+--------+------+------------+-------+-------+---------+
+|  2346 | kumar  | cse  | suresh     | 98781 |    98 | dbms    |
+|  2345 | ramesh | cse  | suresh     |  9834 |    92 | python  |
++-------+--------+------+------------+-------+-------+---------+
+2 rows in set (0.01 sec)
+
+mysql> select*from mentees where subject in("dbms");
++-------+-------+------+------------+-------+-------+---------+
+| regno | name  | dept | fathername | phno  | marks | subject |
++-------+-------+------+------------+-------+-------+---------+
+|  2346 | kumar | cse  | suresh     | 98781 |    98 | dbms    |
++-------+-------+------+------------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks) as average from mentees;
++---------+
+| average |
++---------+
+| 96.3333 |
++---------+
+1 row in set (0.01 sec)
+
+mysql> select min(marks) as minimum from mentees;
++---------+
+| minimum |
++---------+
+|      92 |
++---------+
+1 row in set (0.00 sec)
