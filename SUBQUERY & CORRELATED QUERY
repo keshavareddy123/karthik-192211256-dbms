@@ -1,0 +1,48 @@
+mysql> use suresh;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_suresh |
++------------------+
+| course           |
+| mentees          |
+| student          |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+---------+
+| regno | name   | dept    | fathername | phno  | marks | subject |
++-------+--------+---------+------------+-------+-------+---------+
+|  2346 | kumar  | cse     | suresh     | 98781 |    98 | dbms    |
+|  2367 | rakesh | cse     | suresh     | 98791 |  NULL | FOC     |
+|  2345 | ramesh | cse     | suresh     |  9834 |    92 | python  |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 | pdsd    |
++-------+--------+---------+------------+-------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select regno,name from mentees where name in(select name from mentees where dept="cse");
++-------+--------+
+| regno | name   |
++-------+--------+
+|  2346 | kumar  |
+|  2367 | rakesh |
+|  2345 | ramesh |
++-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> create table menteedetails (id int(10),name varchar(15));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into menteedeatils(id,name)
+    -> select regno,name
+    -> from mentees where dept="ece";
+ERROR 1146 (42S02): Table 'suresh.menteedeatils' doesn't exist
+mysql> insert into menteedetails(id,name)
+    -> select regno,name
+    -> from mentees where dept="ece";
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from menteedetails;
+Empty set (0.00 sec)
