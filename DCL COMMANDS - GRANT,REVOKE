@@ -1,0 +1,81 @@
+mysql> use suresh;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_suresh |
++-------------------+
+| bank              |
+| course            |
+| dept              |
+| marks_view        |
+| menteedetails     |
+| mentees           |
+| movies            |
+| per               |
+| sales             |
+| student           |
++-------------------+
+10 rows in set (0.00 sec)
+
+mysql> desc bank;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| accno              | int(20)     | NO   | PRI | 0       |       |
+| accname            | varchar(20) | YES  |     | NULL    |       |
+| balance            | int(10)     | YES  |     | NULL    |       |
+| nooftransactions   | int(10)     | YES  |     | NULL    |       |
+| paymentreferenceid | int(12)     | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> create user hithesh;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> grant all on bank to suresh;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for suresh;
++-----------------------------------------------------------+
+| Grants for suresh@%                                      |
++-----------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'suresh'@'%'                       |
+| GRANT ALL PRIVILEGES ON `hithesh`.`bank` TO 'suresh'@'%' |
++-----------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all on bank from suresh;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for suresh;
++-------------------------------------+
+| Grants for suresh@%                |
++-------------------------------------+
+| GRANT USAGE ON *.* TO 'suresh'@'%' |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+
+mysql> grant select,update on sales to suresh;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show grants for suresh;
++------------------------------------------------------------+
+| Grants for suresh@%                                       |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'suresh'@'%'                        |
+| GRANT SELECT, UPDATE ON `suresh`.`sales` TO 'suresh'@'%' |
++------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke update on sales from suresh;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for suresh;
++----------------------------------------------------+
+| Grants for suresh@%                               |
++----------------------------------------------------+
+| GRANT USAGE ON *.* TO 'suresh'@'%'                |
+| GRANT SELECT ON `suresh`.`sales` TO 'suresh'@'%' |
++----------------------------------------------------+
+2 rows in set (0.00 sec)
