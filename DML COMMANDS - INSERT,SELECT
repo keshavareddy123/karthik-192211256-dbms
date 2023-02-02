@@ -1,0 +1,74 @@
+mysql> use suresh;
+Database changed
+mysql> create table mentees(regno int(10),name varchar(10),dept varchar(10),fathername varchar(10),phno int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc mentees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int(10)     | YES  |     | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| dept       | varchar(10) | YES  |     | NULL    |       |
+| fathername | varchar(10) | YES  |     | NULL    |       |
+| phno       | int(10)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into mentees values(2346,"kumar","cse","suresh",98781);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees values(2367,"rakesh","cse","suresh",98791);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(2345,"ramesh","cse","suresh",9834);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into mentees values(2389,"raghu","cse","suresg",98485);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suresh     | 98781 |
+|  2367 | rakesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | cse  | suresh     |  9834 |
+|  2389 | raghu  | cse  | suresg     | 98485 |
++-------+--------+------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select name from mentees;
++--------+
+| name   |
++--------+
+| kumar  |
+| rakesh |
+| ramesh |
+| raghu  |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> selcet dept from mentees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selcet dept from mentees' at line 1
+mysql> select dept from mentees;
++------+
+| dept |
++------+
+| cse  |
+| cse  |
+| cse  |
+| cse  |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where dept="cse";
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suresh     | 98781 |
+|  2367 | rakesh | cse  | suresh     | 98791 |
+|  2345 | ramesh | cse  | suresh     |  9834 |
+|  2389 | raghu  | cse  | suresg     | 98485 |
++-------+--------+------+------------+-------+
+4 rows in set (0.00 sec)
