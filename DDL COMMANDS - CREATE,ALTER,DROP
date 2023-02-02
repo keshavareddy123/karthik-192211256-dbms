@@ -1,0 +1,85 @@
+mysql> create database suresh;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use suresh;
+Database changed
+mysql> create table sales(productname varchar(20),price int(10),nooofitems imt(10),balance int(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'imt(10),balance int(10))' at line 1
+mysql> create table sales(productname varchar(20),price int(10),noofitems int(0),balance int(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc sales;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| productname | varchar(20) | YES  |     | NULL    |       |
+| price       | int(10)     | YES  |     | NULL    |       |
+| noofitems   | int(11)     | YES  |     | NULL    |       |
+| balance     | int(10)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> insert into sales values("chocolate",50,2,13);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into sales values("biscuit",30,3,10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into sales values("icecream",150,1,50);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into sales values("chai biscuit",2,15,12);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into sales values("brush",15,2,30);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from sales;
++--------------+-------+-----------+---------+
+| productname  | price | noofitems | balance |
++--------------+-------+-----------+---------+
+| chocolate    |    50 |         2 |      13 |
+| biscuit      |    30 |         3 |      10 |
+| icecream     |   150 |         1 |      50 |
+| chai biscuit |     2 |        15 |      12 |
+| brush        |    15 |         2 |      30 |
++--------------+-------+-----------+---------+
+5 rows in set (0.01 sec)
+
+mysql> select*from sales;
++--------------+-------+-----------+---------+
+| productname  | price | noofitems | balance |
++--------------+-------+-----------+---------+
+| chocolate    |    50 |         2 |      13 |
+| biscuit      |    30 |         3 |      10 |
+| icecream     |   150 |         1 |      50 |
+| chai biscuit |     2 |        15 |      12 |
+| brush        |    15 |         2 |      30 |
++--------------+-------+-----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> alter table sales add remainingstock varchar(10);
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc sales:
+    -> desc sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':
+desc sales' at line 1
+mysql> desc sales;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| productname    | varchar(20) | YES  |     | NULL    |       |
+| price          | int(10)     | YES  |     | NULL    |       |
+| noofitems      | int(11)     | YES  |     | NULL    |       |
+| balance        | int(10)     | YES  |     | NULL    |       |
+| remainingstock | varchar(10) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> drop table sales;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
