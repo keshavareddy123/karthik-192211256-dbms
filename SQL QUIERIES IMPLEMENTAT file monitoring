@@ -1,0 +1,26 @@
+mysql> use suresh;
+Database changed
+mysql> create table patients(P_id int(4),P_name varchar(30),Disease_name varchar(20),Age int(3),p_no int(11));
+Query OK, 0 rows affected, 3 warnings (0.03 sec)
+
+
+mysql> desc patients;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| P_id         | int         | YES  |     | NULL    |       |
+| P_name       | varchar(30) | YES  |     | NULL    |       |
+| Disease_name | varchar(20) | YES  |     | NULL    |       |
+| Age          | int         | YES  |     | NULL    |       |
+| p_no         | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into patients values(1,"Vinay","Fever",50,637437117);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into patients values(2,"Gowri","Sugar",70,936034153);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into patients values(3,"Sekhar","BP",30,934451546);
+Query OK, 1 row affected (0.01 sec)
